@@ -107,7 +107,9 @@ The model achieves approximately 85% accuracy on the validation set. Detailed me
 - Matplotlib
 - Seaborn
 
-## 📂 Dataset
+## 📥 Download Dataset
+
+Before training the model, download the dataset from Kaggle:
 
 This project uses a dataset of 4000+ flower images across five categories:
 **Daisy, Dandelion, Rose, Sunflower, and Tulip.**
@@ -115,6 +117,13 @@ This project uses a dataset of 4000+ flower images across five categories:
 📥 You can download the dataset from Kaggle:
 
 🔗 [Flowers Dataset on Kaggle](https://www.kaggle.com/datasets/rahmasleam/flowers-dataset)
+
+### Or use Kaggle API (recommended):
+
+```bash
+pip install kaggle
+kaggle datasets download -d rahmasleam/flowers-dataset
+unzip flowers-dataset.zip
 
 After downloading, unzip the file and place the `flowers/` folder in the root directory of this project:
 
