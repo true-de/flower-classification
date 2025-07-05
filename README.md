@@ -124,7 +124,7 @@ This project uses a dataset of 4000+ flower images across five categories:
 pip install kaggle
 kaggle datasets download -d rahmasleam/flowers-dataset
 unzip flowers-dataset.zip
-
+```
 After downloading, unzip the file and place the `flowers/` folder in the root directory of this project:
 
 ## 🤝 Contributing
