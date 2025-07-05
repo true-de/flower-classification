@@ -39,7 +39,7 @@ Blossom AI is a deep learning project that classifies five types of flowers (dai
    ```bash
    pip install -r requirements.txt
    ```
-
+   
 ## 🚀 Usage
 
 ### Training the Model
@@ -89,12 +89,7 @@ The model uses a CNN architecture with:
 ├── training_history.png     # Training history plot
 ├── model_metrics.json       # Model performance metrics
 ├── training_history.json    # Training history data
-└── flowers/                 # Dataset directory
-    ├── daisy/
-    ├── dandelion/
-    ├── rose/
-    ├── sunflower/
-    └── tulip/
+└── flowers/                 # (Download separately from Kaggle link below)
 ```
 
 ## 📈 Performance
@@ -113,9 +108,15 @@ The model achieves approximately 85% accuracy on the validation set. Detailed me
 - Seaborn
 
 ## 📂 Dataset
-The flower image dataset (4000+ images of roses, daisies, sunflowers, etc.) is available on Kaggle:
 
-🔗 [Download the dataset here](https://www.kaggle.com/datasets/rahmasleam/flowers-dataset)
+This project uses a dataset of 4000+ flower images across five categories:
+**Daisy, Dandelion, Rose, Sunflower, and Tulip.**
+
+📥 You can download the dataset from Kaggle:
+
+🔗 [Flowers Dataset on Kaggle](https://www.kaggle.com/datasets/rahmasleam/flowers-dataset)
+
+After downloading, unzip the file and place the `flowers/` folder in the root directory of this project:
 
 ## 🤝 Contributing
 
