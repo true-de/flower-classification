@@ -1,0 +1,71 @@
+# GitHub Repository Setup Instructions
+
+## 1. Create a New Repository
+
+1. Go to [GitHub](https://github.com/) and sign in to your account
+2. Click on the '+' icon in the top-right corner and select 'New repository'
+3. Enter the repository name: `flower-classification`
+4. Add a description: "A deep learning project for classifying flowers using CNN with a Streamlit web interface"
+5. Choose public or private visibility based on your preference
+6. Check the box to initialize the repository with a README (optional)
+7. Click 'Create repository'
+
+## 2. Upload Project Files
+
+### Option 1: Using GitHub Web Interface
+
+1. Navigate to your newly created repository
+2. Click on 'Add file' > 'Upload files'
+3. Drag and drop all the project files or use the file selector
+4. Add a commit message like "Initial commit: Upload flower classification project"
+5. Click 'Commit changes'
+
+### Option 2: Using Git Command Line
+
+```bash
+# Navigate to your project directory
+cd e:\pyth\aigen\flower_classification
+
+# Initialize a new Git repository
+git init
+
+# Add all files to staging
+git add .
+
+# Commit the files
+git commit -m "Initial commit: Upload flower classification project"
+
+# Add the remote repository URL (replace USERNAME with your GitHub username)
+git remote add origin https://github.com/USERNAME/flower-classification.git
+
+# Push to GitHub
+git push -u origin main
+```
+
+## 3. Verify Repository
+
+After uploading, verify that all files are correctly uploaded to your GitHub repository:
+
+- README.md
+- app.py
+- train_flower_classifier.py
+- requirements.txt
+- flower_classifier.h5
+- confusion_matrix.png
+- class_confidence.png
+- training_history.png
+- model_metrics.json
+- training_history.json
+- flowers/ directory (if you want to include the dataset)
+
+## 4. Set Up GitHub Pages (Optional)
+
+If you want to create a project website:
+
+1. Go to your repository settings
+2. Scroll down to the 'GitHub Pages' section
+3. Select the branch you want to deploy (usually 'main')
+4. Choose the root folder
+5. Click 'Save'
+
+Your project will be available at: `https://USERNAME.github.io/flower-classification`
