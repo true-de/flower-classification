@@ -112,6 +112,11 @@ The model achieves approximately 85% accuracy on the validation set. Detailed me
 - Matplotlib
 - Seaborn
 
+## 📂 Dataset
+The flower image dataset (4000+ images of roses, daisies, sunflowers, etc.) is available on Kaggle:
+
+🔗 [Download the dataset here](https://www.kaggle.com/datasets/rahmasleam/flowers-dataset)
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
