@@ -31,7 +31,7 @@ Blossom AI is a deep learning project that classifies five types of flowers (dai
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/username/flower-classification.git
+   git clone git@github.com:true-de/flower-classification.git
    cd flower-classification
    ```
 
