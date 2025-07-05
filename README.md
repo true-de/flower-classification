@@ -8,7 +8,7 @@
 
 Blossom AI is a deep learning project that classifies five types of flowers (daisy, dandelion, rose, sunflower, and tulip) using a convolutional neural network. The project includes both a model training script and an interactive web application for real-time flower classification.
 
-![Blossom AI App](https://raw.githubusercontent.com/username/flower-classification/main/app_screenshot.png)
+<!-- ![Blossom AI App](https://raw.githubusercontent.com/username/flower-classification/main/app_screenshot.png) -->
 
 ## ✨ Features
 
@@ -137,5 +137,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 🙏 Acknowledgements
 
-- The dataset used is based on the [Flowers Recognition](https://www.kaggle.com/alxmamaev/flowers-recognition) dataset from Kaggle
+- The dataset used is based on the [Flowers Recognition](https://www.kaggle.com/rahmasleam/flowers-dataset) dataset from Kaggle
 - Thanks to the TensorFlow and Streamlit teams for their amazing frameworks
