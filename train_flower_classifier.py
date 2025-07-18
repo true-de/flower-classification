@@ -1,16 +1,16 @@
+import os
+from datetime import datetime
+import json
 import tensorflow as tf
 from tensorflow.keras import layers, models
 from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-import os
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import confusion_matrix, classification_report
 import plotly.graph_objects as go
 import plotly.express as px
-from datetime import datetime
-import json
 import cv2
 from PIL import Image, ImageEnhance
 import pandas as pd
@@ -18,11 +18,11 @@ import pandas as pd
 # Enhanced configuration
 class Config:
     DATA_DIR = './flowers/'
-    MODEL_NAME = 'flower_classifier.h5'
+    MODEL_NAME = 'flower_classifier.keras'
     IMG_SIZE = (128, 128)
     BATCH_SIZE = 32
     EPOCHS = 10
-    PATIENCE = 10
+    PATIENCE = 5
     NUM_CLASSES = 5
     LEARNING_RATE = 0.001
 
@@ -260,7 +260,7 @@ def evaluate_model_comprehensive(model, validation_generator):
                 'std_confidence': np.std(np.max(class_predictions, axis=1)),
                 'correct_predictions': np.sum(np.array(y_pred)[np.array(y_true) == i] == i)
             }
-    
+
     # Save detailed metrics
     # Convert NumPy values to native Python types to ensure JSON serialization works
     metrics = {
@@ -272,7 +272,7 @@ def evaluate_model_comprehensive(model, validation_generator):
         'confidence_analysis': confidence_analysis,
         'evaluation_date': datetime.now().isoformat()
     }
-    
+
     # Convert any remaining NumPy values in nested dictionaries
     def convert_to_serializable(obj):
         if isinstance(obj, np.number):
@@ -283,16 +283,16 @@ def evaluate_model_comprehensive(model, validation_generator):
             return [convert_to_serializable(i) for i in obj]
         else:
             return obj
-    
+
     metrics = convert_to_serializable(metrics)
-    
+
     with open('model_metrics.json', 'w') as f:
         json.dump(metrics, f, indent=2)
-    
+
     print(f"✅ Overall Accuracy: {accuracy:.4f}")
     print(f"✅ Macro Average F1: {macro_avg_f1:.4f}")
     print(f"✅ Weighted Average F1: {weighted_avg_f1:.4f}")
-    
+
     return metrics
 
 # Enhanced visualization functions
@@ -415,40 +415,41 @@ def train_enhanced_model():
     """Main training function with enhanced features"""
     print("🚀 Starting enhanced flower classifier training...")
     print("="*60)
-    
+
     # Analyze dataset
     class_counts = analyze_dataset()
     if not class_counts:
         return
-    
+
     # Create data generators
     train_generator, validation_generator = create_data_generators()
-    
+
     # Build model
     model = build_enhanced_model()
-    
+
     # Display model summary
     print("\n📋 Model Summary:")
     model.summary()
-    
+
     # Create callbacks
     callbacks = create_callbacks()
-    
+
+
     # Calculate steps per epoch
     steps_per_epoch = train_generator.samples // Config.BATCH_SIZE
     validation_steps = validation_generator.samples // Config.BATCH_SIZE
-    
+
     print(f"\n🎯 Training Configuration:")
     print(f"   Epochs: {Config.EPOCHS}")
     print(f"   Batch size: {Config.BATCH_SIZE}")
     print(f"   Steps per epoch: {steps_per_epoch}")
     print(f"   Validation steps: {validation_steps}")
     print(f"   Learning rate: {Config.LEARNING_RATE}")
-    
+
     # Train the model
     print("\n🏃‍♂️ Starting training...")
     start_time = datetime.now()
-    
+
     history = model.fit(
         train_generator,
         steps_per_epoch=steps_per_epoch,
@@ -458,25 +459,25 @@ def train_enhanced_model():
         callbacks=callbacks,
         verbose=1
     )
-    
+
     end_time = datetime.now()
     training_time = end_time - start_time
-    
+
     print(f"\n✅ Training completed in {training_time}")
-    
+
     # Evaluate the model
     print("\n🔍 Evaluating model...")
     metrics = evaluate_model_comprehensive(model, validation_generator)
-    
+
     # Create advanced plots
     create_advanced_plots(history, metrics)
-    
+
     # Save training history
     # Convert history.history from a Keras History object to a serializable dict
     serializable_history = {}
     for key, value in history.history.items():
         serializable_history[key] = [float(v) for v in value]
-    
+
     history_dict = {
         'history': serializable_history,
         'training_time': str(training_time),
@@ -484,14 +485,14 @@ def train_enhanced_model():
         'final_loss': float(min(history.history['val_loss'])),
         'total_epochs': len(history.history['accuracy'])
     }
-    
+
     with open('training_history.json', 'w') as f:
         json.dump(history_dict, f, indent=2)
-    
+
     print("\n🎉 Training completed successfully!")
     print("="*60)
     print("📄 Generated files:")
-    print("   - flower_classifier.h5 (trained model)")
+    print("   - flower_classifier.keras (trained model)")
     print("   - training_history.png (training plots)")
     print("   - confusion_matrix.png (confusion matrix)")
     print("   - class_confidence.png (per-class confidence)")
@@ -503,10 +504,10 @@ if __name__ == "__main__":
     # Set random seeds for reproducibility
     np.random.seed(42)
     tf.random.set_seed(42)
-    
+
     # Mixed precision with float16 is causing compatibility issues with top-k operations
     # Either use float32 or comment out the mixed precision line
     # tf.keras.mixed_precision.set_global_policy('mixed_float16')
-    
+
     # Train the model
     train_enhanced_model()

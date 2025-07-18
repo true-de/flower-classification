@@ -1,0 +1,115 @@
+{
+  "accuracy": 0.6174418604651163,
+  "macro_avg_f1": 0.6015581261459506,
+  "weighted_avg_f1": 0.6061618370378764,
+  "confusion_matrix": [
+    [
+      76,
+      51,
+      16,
+      6,
+      3
+    ],
+    [
+      3,
+      187,
+      1,
+      14,
+      5
+    ],
+    [
+      3,
+      29,
+      53,
+      8,
+      63
+    ],
+    [
+      4,
+      34,
+      0,
+      98,
+      10
+    ],
+    [
+      3,
+      26,
+      32,
+      18,
+      117
+    ]
+  ],
+  "classification_report": {
+    "Daisy": {
+      "precision": 0.8539325842696629,
+      "recall": 0.5,
+      "f1-score": 0.6307053941908713,
+      "support": 152.0
+    },
+    "Dandelion": {
+      "precision": 0.5718654434250765,
+      "recall": 0.8904761904761904,
+      "f1-score": 0.6964618249534451,
+      "support": 210.0
+    },
+    "Rose": {
+      "precision": 0.5196078431372549,
+      "recall": 0.33974358974358976,
+      "f1-score": 0.4108527131782946,
+      "support": 156.0
+    },
+    "Sunflower": {
+      "precision": 0.6805555555555556,
+      "recall": 0.6712328767123288,
+      "f1-score": 0.6758620689655173,
+      "support": 146.0
+    },
+    "Tulip": {
+      "precision": 0.5909090909090909,
+      "recall": 0.5969387755102041,
+      "f1-score": 0.5939086294416244,
+      "support": 196.0
+    },
+    "accuracy": 0.6174418604651163,
+    "macro avg": {
+      "precision": 0.6433741034593281,
+      "recall": 0.5996782864884627,
+      "f1-score": 0.6015581261459506,
+      "support": 860.0
+    },
+    "weighted avg": {
+      "precision": 0.6350321074266971,
+      "recall": 0.6174418604651163,
+      "f1-score": 0.6061618370378764,
+      "support": 860.0
+    }
+  },
+  "confidence_analysis": {
+    "Daisy": {
+      "mean_confidence": 0.6203568577766418,
+      "std_confidence": 0.1986784189939499,
+      "correct_predictions": 76.0
+    },
+    "Dandelion": {
+      "mean_confidence": 0.733833909034729,
+      "std_confidence": 0.16782638430595398,
+      "correct_predictions": 187.0
+    },
+    "Rose": {
+      "mean_confidence": 0.5810583829879761,
+      "std_confidence": 0.15406835079193115,
+      "correct_predictions": 53.0
+    },
+    "Sunflower": {
+      "mean_confidence": 0.7247385382652283,
+      "std_confidence": 0.20514161884784698,
+      "correct_predictions": 98.0
+    },
+    "Tulip": {
+      "mean_confidence": 0.6023911237716675,
+      "std_confidence": 0.14204606413841248,
+      "correct_predictions": 117.0
+    }
+  },
+  "evaluation_date": "2025-07-17T10:55:43.517021"
+}

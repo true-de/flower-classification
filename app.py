@@ -17,19 +17,50 @@ except ImportError:
     tf_available = False
 
 # Enhanced class names with emojis and descriptions
+# Model1 and model
+# CLASS_INFO = {
+#     'Daisy': {'emoji': '🌼', 'description': 'Simple white petals with yellow center', 'color': '#FFD700'},
+#     'Dandelion': {'emoji': '🌻', 'description': 'Bright yellow composite flower', 'color': '#FFA500'},
+#     'Rose': {'emoji': '🌹', 'description': 'Classic layered petals, often red or pink', 'color': '#FF69B4'},
+#     'Sunflower': {'emoji': '🌻', 'description': 'Large yellow petals with dark center', 'color': '#FFD700'},
+#     'Tulip': {'emoji': '🌷', 'description': 'Cup-shaped flower with smooth petals', 'color': '#FF1493'}
+# }
+
+# model2
 CLASS_INFO = {
-    'Daisy': {'emoji': '🌼', 'description': 'Simple white petals with yellow center', 'color': '#FFD700'},
-    'Dandelion': {'emoji': '🌻', 'description': 'Bright yellow composite flower', 'color': '#FFA500'},
-    'Rose': {'emoji': '🌹', 'description': 'Classic layered petals, often red or pink', 'color': '#FF69B4'},
-    'Sunflower': {'emoji': '🌻', 'description': 'Large yellow petals with dark center', 'color': '#FFD700'},
-    'Tulip': {'emoji': '🌷', 'description': 'Cup-shaped flower with smooth petals', 'color': '#FF1493'}
+    'daisy': {
+        'emoji': '🌼',
+        'description': 'Simple white petals with yellow center',
+        'color': '#FFFF99'  # light yellow
+    },
+    'lavender': {
+        'emoji': '💜',
+        'description': 'Purple spikes with a calming fragrance',
+        'color': '#B57EDC'  # lavender purple
+    },
+    'lily': {
+        'emoji': '🌸',
+        'description': 'Elegant trumpet-shaped flower, often white or pink',
+        'color': '#FFC0CB'  # soft pink
+    },
+    'rose': {
+        'emoji': '🌹',
+        'description': 'Classic layered petals, often red or pink',
+        'color': '#FF4C4C'  # rose red
+    },
+    'sunflower': {
+        'emoji': '🌻',
+        'description': 'Large yellow petals with dark center',
+        'color': '#FFD700'  # sunflower yellow
+    }
 }
+
 
 CLASS_NAMES = list(CLASS_INFO.keys())
 
 # Enhanced page configuration
 st.set_page_config(
-    page_title="🌼 Blossom AI",
+    page_title="Blossom AI",
     page_icon="🌼",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -297,19 +328,81 @@ st.markdown("""
         border-radius: 3px;
     }
     
-    /* Streamlit component overrides */
-    .stSelectbox > div > div,
-    .stSlider > div > div {
+    /* Streamlit component overrides - Fixed Slider Styling */
+    .stSelectbox > div > div {
         background-color: rgba(255,255,255,0.9);
         border-radius: 12px;
         transition: all 0.4s ease;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
-    
-    .stSelectbox > div > div:hover,
-    .stSlider > div > div:hover {
+
+    .stSelectbox > div > div:hover {
         background-color: rgba(255,255,255,1);
         box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    /* Enhanced Slider Styling */
+    .stSlider {
+        padding: 1rem;
+    }
+
+    .stSlider > div {
+        color: #000;
+        background-color: rgba(255,255,255,0.95);
+        border-radius: 15px;
+        padding: 1.5rem;
+        transition: all 0.4s ease;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        border: 2px solid rgba(58, 123, 213, 0.1);
+    }
+
+    .stSlider > div:hover {
+        background-color: rgba(255,255,255,1);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        border-color: rgba(58, 123, 213, 0.3);
+        transform: translateY(-2px);
+    }
+
+    /* Slider track styling */
+    .stSlider .stSlider > div > div > div {
+        background: linear-gradient(90deg, #e9ecef 0%, #dee2e6 100%);
+        border-radius: 10px;
+        height: 8px;
+    }
+
+    /* Slider thumb styling */
+    .stSlider .stSlider > div > div > div > div {
+        background: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        box-shadow: 0 4px 12px rgba(58, 123, 213, 0.4);
+        transition: all 0.3s ease;
+    }
+
+    .stSlider .stSlider > div > div > div > div:hover {
+        transform: scale(1.2);
+        box-shadow: 0 6px 16px rgba(58, 123, 213, 0.6);
+    }
+
+    /* Slider label styling */
+    .stSlider > label {
+        color: #3a7bd5;
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+        letter-spacing: 0.3px;
+    }
+
+    /* Slider value display */
+    .stSlider > div > div > div > div:last-child {
+        color: #3a7bd5;
+        font-weight: 700;
+        font-size: 1.1rem;
+        background: linear-gradient(135deg, rgba(58, 123, 213, 0.1), rgba(0, 210, 255, 0.1));
+        padding: 0.3rem 0.8rem;
+        border-radius: 8px;
+        border: 1px solid rgba(58, 123, 213, 0.2);
     }
     
     /* File uploader styling */
@@ -395,8 +488,8 @@ def load_model():
         return None
     
     try:
-        if os.path.exists('flower_classifier.h5'):
-            return tf.keras.models.load_model('flower_classifier.h5')
+        if os.path.exists('model2/model2.keras'):
+            return tf.keras.models.load_model('model2/model2.keras')
         else:
             return None
     except Exception as e:
@@ -411,15 +504,31 @@ def preprocess_image(image, augment=False):
     # Convert to RGB if needed
     if image.mode != 'RGB':
         image = image.convert('RGB')
-    
+
     # Optional augmentation for better predictions
     if augment:
-        # Slightly enhance the image
-        enhancer = ImageEnhance.Contrast(image)
-        image = enhancer.enhance(1.2)
+        # Random rotation (-30 to 30 degrees)
+        rotation_angle = np.random.uniform(-30, 30)
+        image = image.rotate(rotation_angle)
         
+        # Random brightness adjustment (0.8 to 1.2)
+        brightness_factor = np.random.uniform(0.8, 1.2)
+        enhancer = ImageEnhance.Brightness(image)
+        image = enhancer.enhance(brightness_factor)
+        
+        # Random contrast adjustment (0.8 to 1.2)
+        contrast_factor = np.random.uniform(0.8, 1.2)
+        enhancer = ImageEnhance.Contrast(image)
+        image = enhancer.enhance(contrast_factor)
+        
+        # Random sharpness adjustment (0.8 to 1.2)
+        sharpness_factor = np.random.uniform(0.8, 1.2)
         enhancer = ImageEnhance.Sharpness(image)
-        image = enhancer.enhance(1.1)
+        image = enhancer.enhance(sharpness_factor)
+        
+        # Random horizontal flip
+        if np.random.random() > 0.5:
+            image = image.transpose(Image.FLIP_LEFT_RIGHT)
     
     # Resize and normalize
     image = image.resize((128, 128))
@@ -469,6 +578,144 @@ def analyze_image_features(image):
     
     return color_dominance, edge_density
 
+# ADD THESE 3 NEW FUNCTIONS HERE (after analyze_image_features function)
+
+def make_prediction_with_enhanced_messages(model, image, confidence_threshold=0.5, enhance_image=True):
+    """
+    Make prediction with enhanced error handling and user-friendly messages
+    """
+    # Preprocess image
+    processed_image = preprocess_image(image, augment=enhance_image)
+    
+    # Make prediction
+    predictions = model.predict(processed_image, verbose=0)[0]
+    
+    # Get sorted predictions
+    pred_indices = np.argsort(predictions)[::-1]
+    
+    # Main prediction
+    top_pred_idx = pred_indices[0]
+    top_class = CLASS_NAMES[top_pred_idx]
+    top_confidence = predictions[top_pred_idx]
+    
+    # Calculate prediction entropy (measures uncertainty)
+    entropy = -np.sum(predictions * np.log(predictions + 1e-10))
+    
+    # Calculate confidence spread (difference between top 2 predictions)
+    confidence_spread = predictions[pred_indices[0]] - predictions[pred_indices[1]]
+    
+    # Enhanced decision logic
+    if top_confidence >= confidence_threshold and confidence_spread > 0.1:
+        # High confidence, clear winner
+        st.success(f"🎉 I'm {top_confidence*100:.1f}% confident this is a **{top_class}**!")
+        return "success", top_class, top_confidence, predictions, pred_indices
+        
+    elif top_confidence >= 0.3 and confidence_spread > 0.05:
+        # Medium confidence
+        st.warning(f"🤔 I think this might be a **{top_class}** ({top_confidence*100:.1f}% confidence), but I'm not entirely sure.")
+        st.info("💡 **Tip**: Try uploading a clearer image with better lighting for more accurate results.")
+        return "uncertain", top_class, top_confidence, predictions, pred_indices
+        
+    elif entropy > 1.5:  # High entropy indicates uniform distribution
+        # Very uncertain - likely not a flower or very unclear image
+        st.error("❌ **This doesn't appear to be a recognizable flower image.**")
+        st.markdown("""
+        **Possible reasons:**
+        - The image might not contain a flower
+        - The image quality is too poor
+        - The flower is too small or unclear in the image
+        - The lighting conditions are not suitable
+        """)
+        st.info("🔄 **Please try**: Uploading a clear, well-lit image of a flower that fills most of the frame.")
+        return "not_flower", None, top_confidence, predictions, pred_indices
+        
+    elif top_confidence < 0.3:
+        # Low confidence - likely unsupported flower type
+        st.error("❌ **This flower type is not in my training database.**")
+        st.markdown(f"""
+        **I can only identify these flower types:**
+        {', '.join([f"{CLASS_INFO[name]['emoji']} {name}" for name in CLASS_NAMES])}
+        
+        **Your image might contain:**
+        - A flower type I haven't been trained on
+        - A flower that's too damaged or unclear to identify
+        - An object that's not a flower
+        """)
+        st.info("🌸 **Suggestion**: Try uploading an image of one of the supported flower types listed above.")
+        return "unsupported_flower", None, top_confidence, predictions, pred_indices
+        
+    else:
+        # Edge case - moderate confidence but low spread
+        st.warning(f"🤷‍♂️ I'm having trouble deciding between a few flower types. My best guess is **{top_class}** ({top_confidence*100:.1f}% confidence).")
+        st.markdown("""
+        **This could mean:**
+        - The image shows characteristics of multiple flower types
+        - The angle or lighting makes identification difficult
+        - The flower is in an unusual state (wilted, partially visible, etc.)
+        """)
+        st.info("📸 **Try**: Taking a photo from a different angle or with better lighting.")
+        return "ambiguous", top_class, top_confidence, predictions, pred_indices
+
+def assess_image_quality(image):
+    """
+    Assess image quality to help users understand why predictions might fail
+    """
+    import cv2
+    
+    # Convert to array
+    img_array = np.array(image)
+    
+    # Brightness assessment
+    brightness = np.mean(img_array) / 255.0
+    
+    # Sharpness assessment using Laplacian variance
+    gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2GRAY)
+    sharpness = cv2.Laplacian(gray, cv2.CV_64F).var() / 1000.0  # Normalized
+    
+    # Size assessment
+    size_score = min(image.size[0] * image.size[1] / (500 * 500), 1.0)  # Normalized to 500x500
+    
+    # Overall score
+    overall_score = (
+        (0.5 if 0.3 <= brightness <= 0.8 else 0.2) +  # Good brightness range
+        (min(sharpness, 1.0) * 0.3) +  # Sharpness contribution
+        (size_score * 0.2)  # Size contribution
+    )
+    
+    return {
+        'brightness': brightness,
+        'sharpness': min(sharpness, 1.0),
+        'size_score': size_score,
+        'overall_score': overall_score
+    }
+
+def show_helpful_suggestions():
+    """
+    Show helpful suggestions for better flower recognition
+    """
+    st.markdown("### 💡 Tips for Better Recognition")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("""
+        **📸 Photography Tips:**
+        - Fill the frame with the flower
+        - Use natural daylight when possible
+        - Avoid shadows on the flower
+        - Take photos from multiple angles
+        - Ensure the flower is in focus
+        """)
+        
+    with col2:
+        st.markdown("""
+        **🌸 Supported Flowers:**
+        - 🌼 Daisy - White petals, yellow center
+        - 🌻 Sunflower - Large, bright yellow
+        - 🌹 Rose - Various colors, layered petals
+        - 🌷 Tulip - Cup-shaped, smooth petals
+        - 🌾 Dandelion - Yellow, spiky petals
+        """)
 # Main app
 def main():
     # Enhanced header with more engaging content
@@ -500,10 +747,10 @@ def main():
     enhance_image = st.sidebar.checkbox("🔧 Enhance image quality", value=True)
     show_analysis = st.sidebar.checkbox("📊 Show detailed analysis", value=True)
     confidence_threshold = st.sidebar.slider("🎯 Confidence threshold", 0.0, 1.0, 0.5)
-    
+
     # File upload section
     col1, col2 = st.columns([2, 1])
-    
+
     with col1:
         st.markdown("### 📁 Upload Your Flower Image")
         uploaded_file = st.file_uploader(
@@ -535,7 +782,7 @@ def main():
             with col2:
                 st.image(image, caption='Your Flower Image', use_column_width=True)
 
-            # Prediction section
+            # Prediction section with enhanced error handling
             st.markdown("### 🔮 AI Prediction")
 
             with st.spinner("🤖 Analyzing your flower..."):
@@ -553,84 +800,126 @@ def main():
                 top_class = CLASS_NAMES[top_pred_idx]
                 top_confidence = predictions[top_pred_idx]
 
-                # Display main result
-                if top_confidence >= confidence_threshold:
+                # Calculate prediction entropy and confidence spread
+                entropy = -np.sum(predictions * np.log(predictions + 1e-10))
+                confidence_spread = predictions[pred_indices[0]] - predictions[pred_indices[1]]
+
+                # Enhanced decision logic with better messages
+                show_detailed_analysis = True
+
+                if top_confidence >= confidence_threshold and confidence_spread > 0.1:
+                    # High confidence, clear winner
                     st.success(f"🎉 I'm {top_confidence*100:.1f}% confident this is a **{top_class}**!")
+
+                elif top_confidence >= 0.3 and confidence_spread > 0.05:
+                    # Medium confidence
+                    st.warning(f"🤔 I think this might be a **{top_class}** ({top_confidence*100:.1f}% confidence), but I'm not entirely sure.")
+                    st.info("💡 **Tip**: Try uploading a clearer image with better lighting for more accurate results.")
+
+                elif entropy > 1.5:  # High entropy indicates uniform distribution
+                    # Very uncertain - likely not a flower or very unclear image
+                    st.error("❌ **This doesn't appear to be a recognizable flower image.**")
+                    st.markdown("""
+                    **Possible reasons:**
+                    - The image might not contain a flower
+                    - The image quality is too poor
+                    - The flower is too small or unclear in the image
+                    - The lighting conditions are not suitable
+                    """)
+                    st.info("🔄 **Please try**: Uploading a clear, well-lit image of a flower that fills most of the frame.")
+                    show_detailed_analysis = False
+
+                elif top_confidence < 0.3:
+                    # Low confidence - likely unsupported flower type
+                    st.error("❌ **This flower type is not in my training database.**")
+                    st.markdown(f"""
+                    **I can only identify these flower types:**
+                    {', '.join([f"{CLASS_INFO[name]['emoji']} {name}" for name in CLASS_NAMES])}
+                    
+                    **Your image might contain:**
+                    - A flower type I haven't been trained on
+                    - A flower that's too damaged or unclear to identify
+                    - An object that's not a flower
+                    """)
+                    st.info("🌸 **Suggestion**: Try uploading an image of one of the supported flower types listed above.")
+                    show_detailed_analysis = False
+                    
                 else:
-                    st.warning(f"🤔 I think this might be a **{top_class}** ({top_confidence*100:.1f}% confidence), but I'm not very sure.")
+                    # Edge case - moderate confidence but low spread
+                    st.warning(f"🤷‍♂️ I'm having trouble deciding between a few flower types. My best guess is **{top_class}** ({top_confidence*100:.1f}% confidence).")
+                    st.markdown("""
+                    **This could mean:**
+                    - The image shows characteristics of multiple flower types
+                    - The angle or lighting makes identification difficult
+                    - The flower is in an unusual state (wilted, partially visible, etc.)
+                    """)
+                    st.info("📸 **Try**: Taking a photo from a different angle or with better lighting.")
 
-                # Detailed predictions
-                st.markdown("### 📈 Detailed Predictions")
-
-                # Create two columns for predictions
-                col1, col2 = st.columns(2)
-
-                with col1:
-                    st.markdown("#### Top 3 Predictions")
+                # Show reference predictions even for failed cases
+                if not show_detailed_analysis:
+                    st.markdown("#### 🔍 For reference, here's what I detected:")
                     for i, idx in enumerate(pred_indices[:3]):
                         class_name = CLASS_NAMES[idx]
-                        confidence = predictions[idx]
+                        conf = predictions[idx]
                         emoji = CLASS_INFO[class_name]['emoji']
-                        desc = CLASS_INFO[class_name]['description']
+                        st.markdown(f"{emoji} {class_name}: {conf*100:.1f}%")
 
-                        st.markdown(f"""
-                        <div class="prediction-card">
-                            <h4>{emoji} {class_name}</h4>
-                            <p><strong>Confidence:</strong> {confidence*100:.2f}%</p>
-                            <p><small>{desc}</small></p>
-                        </div>
-                        """, unsafe_allow_html=True)
+                # Image quality assessment
+                st.markdown("#### 📊 Image Quality Assessment")
+                image_quality = assess_image_quality(image)
+                
+                if image_quality['overall_score'] < 0.5:
+                    st.warning("⚠️ **Image quality could be improved:**")
+                    if image_quality['brightness'] < 0.3:
+                        st.markdown("- Image appears too dark")
+                    if image_quality['brightness'] > 0.8:
+                        st.markdown("- Image appears too bright")
+                    if image_quality['sharpness'] < 0.3:
+                        st.markdown("- Image appears blurry")
+                    if image_quality['size_score'] < 0.5:
+                        st.markdown("- Image resolution is quite low")
+                else:
+                    st.success("✅ Image quality looks good!")
 
-                with col2:
-                    # Confidence chart
-                    fig = create_confidence_chart(predictions, CLASS_NAMES)
-                    st.plotly_chart(fig, use_container_width=True)
+                # Show your existing detailed predictions only if we have a reasonable result
+                if show_detailed_analysis:
+                    # Continue with your existing detailed predictions code here
+                    st.markdown("### 📈 Detailed Predictions")
 
-                # Advanced analysis
-                if show_analysis:
-                    st.markdown("### 🔬 Advanced Analysis")
-
+                    # Create two columns for predictions
                     col1, col2 = st.columns(2)
 
                     with col1:
-                        st.markdown("#### 🎨 Color Analysis")
-                        color_dom, edge_density = analyze_image_features(image)
+                        st.markdown("#### Top 3 Predictions")
+                        for i, idx in enumerate(pred_indices[:3]):
+                            class_name = CLASS_NAMES[idx]
+                            confidence = predictions[idx]
+                            emoji = CLASS_INFO[class_name]['emoji']
+                            desc = CLASS_INFO[class_name]['description']
 
-                        # Color dominance chart
-                        fig_color = px.bar(
-                            x=list(color_dom.keys()),
-                            y=list(color_dom.values()),
-                            color=list(color_dom.keys()),
-                            color_discrete_map={'Red': 'red', 'Green': 'green', 'Blue': 'blue'},
-                            title="Color Dominance"
-                        )
-                        st.plotly_chart(fig_color, use_container_width=True)
+                            st.markdown(f"""
+                            <div class="prediction-card">
+                                <h4>{emoji} {class_name}</h4>
+                                <p><strong>Confidence:</strong> {confidence*100:.2f}%</p>
+                                <p><small>{desc}</small></p>
+                            </div>
+                            """, unsafe_allow_html=True)
 
                     with col2:
-                        st.markdown("#### 🔍 Image Properties")
-                        st.markdown(f"""
-                        <div class="info-box">
-                            <strong>Image Size:</strong> {image.size[0]} × {image.size[1]} pixels<br>
-                            <strong>Mode:</strong> {image.mode}<br>
-                            <strong>Edge Density:</strong> {edge_density:.3f}<br>
-                            <strong>Texture:</strong> {"High detail" if edge_density > 0.1 else "Smooth"}
-                        </div>
-                        """, unsafe_allow_html=True)
+                        # Confidence chart
+                        fig = create_confidence_chart(predictions, CLASS_NAMES)
+                        st.plotly_chart(fig, use_container_width=True)
 
-                        # Model confidence metrics
-                        entropy = -np.sum(predictions * np.log(predictions + 1e-10))
-                        max_conf = np.max(predictions)
+                    # Continue with your existing advanced analysis section
+                    if show_analysis:
+                        st.markdown("### 🔬 Advanced Analysis")
+                        # ... your existing advanced analysis code here
 
-                        st.markdown("#### 🎯 Prediction Metrics")
-                        st.markdown(f"""
-                        <div class="info-box">
-                            <strong>Prediction Entropy:</strong> {entropy:.3f}<br>
-                            <strong>Max Confidence:</strong> {max_conf:.3f}<br>
-                            <strong>Certainty:</strong> {"High" if max_conf > 0.8 else "Medium" if max_conf > 0.5 else "Low"}
-                        </div>
-                        """, unsafe_allow_html=True)
+                # Show helpful suggestions for failed predictions
+                elif not show_detailed_analysis:
+                    show_helpful_suggestions()
 
-            # Save prediction history (in session state)
+            # Continue with your existing prediction history code
             if 'prediction_history' not in st.session_state:
                 st.session_state.prediction_history = []
 
@@ -644,6 +933,7 @@ def main():
         except Exception as e:
             st.error(f"❌ Error processing image: {e}")
             st.info("Please try with a different image or check the file format.")
+            show_helpful_suggestions()
 
     # Model evaluation section
     st.markdown("---")
@@ -652,16 +942,16 @@ def main():
     col1, col2 = st.columns(2)
 
     with col1:
-        if os.path.exists('training_history.png'):
+        if os.path.exists('model2/training_history.png'):
             st.markdown("### 📈 Training History")
-            st.image('training_history.png', use_column_width=True)
+            st.image('model2/training_history.png', use_column_width=True)
         else:
             st.info("📈 Training history not available. Train the model first.")
 
     with col2:
-        if os.path.exists('confusion_matrix.png'):
+        if os.path.exists('model2/confusion_matrix.png'):
             st.markdown("### 🔄 Confusion Matrix")
-            st.image('confusion_matrix.png', use_column_width=True)
+            st.image('model2/confusion_matrix.png', use_column_width=True)
         else:
             st.info("🔄 Confusion matrix not available. Train the model first.")
 
